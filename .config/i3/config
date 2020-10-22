@@ -25,7 +25,7 @@ exec --no-startup-id xset r rate 250 50
 exec --no-startup-id picom --corner-radius 15
 
 # Setup background
-exec --no-startup-id ~/.scripts/xlayoutdisplay && ~/.fehbg
+exec --no-startup-id ~/.scripts/fehbg
 
 exec --no-startup-id dunst
 exec --no-startup-id redshift -l 51.50853:-0.12574
