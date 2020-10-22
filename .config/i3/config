@@ -19,10 +19,14 @@ font pango:DejaVu Sans Mono 3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+# Key repeat rate
 exec --no-startup-id xset r rate 250 50
+
 exec --no-startup-id picom --corner-radius 15
+
+# Setup background
 exec --no-startup-id ~/.scripts/xlayoutdisplay && ~/.fehbg
-exec --no-startup-id xinput map-to-output "Tablet Monitor Pen Pen (0)" HDMI-0
+
 exec --no-startup-id dunst
 exec --no-startup-id redshift -l 51.50853:-0.12574
 exec --no-startup-id volctl

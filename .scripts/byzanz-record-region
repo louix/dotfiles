@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+# Duration and output file
+if [ $# -gt 0 ]; then
+    D="--duration=$@ /tmp/capture.gif"
+else
+    D="--duration=3 /tmp/capture.gif"
+fi
+
+read -r X Y W H < <(slop -f '%x %y %w %h')
+
+notify-send "Recording..."
+byzanz-record --delay=0 -x $X -y $Y -w $W -h $H $D
+
+cp /tmp/capture.gif ~/media/captures/$(date +%s).gif
+sxiv -a /tmp/capture.gif
