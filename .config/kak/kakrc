@@ -1,0 +1,81 @@
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+plug "andreyorst/plug.kak" noload
+
+plug "ul/kak-tree"
+plug "alexherbo2/auto-pairs.kak"
+plug "danr/kakoune-easymotion"
+plug "occivink/kakoune-gdb"
+plug "occivink/kakoune-sudo-write"
+plug "insipx/kak-crosshairs"
+plug "schemar/kak-jsts" config %{
+    hook global WinSetOption filetype=(javascript|typescript) %{
+        map window user L -docstring 'lint' ': lint<ret>'
+        map window user f -docstring 'format' ': format-tslint<ret>'
+        
+        # If you want to format before every write, you could do s.th. like this:
+        hook window BufWritePre .* %{
+            evaluate-commands -no-hooks %{
+                format-tslint
+            }
+        }
+    }
+}
+plug "andreyorst/fzf.kak" config %{
+    map -docstring 'fzf mode' global normal '<c-p>' ': fzf-mode<ret>'
+} defer fzf %{
+    set-option global fzf_file_command 'rg'
+}
+
+plug "eraserhd/parinfer-rust" do %{
+    cargo install --force --path .
+    cargo clean
+} config %{
+    hook global WinSetOption filetype=(clojure|lisp|scheme|racket) %{
+        parinfer-enable-window -smart
+    }
+}
+
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
+    lsp-enable-window
+    lsp-auto-hover-enable
+    cursorline
+    add-highlighter global/ number-lines
+    set-option global ui_options ncurses_assistant=off
+    #Python LSP config
+    set-option global lsp_server_configuration pyls.configurationSources=["flake8"]
+}
+
+# hook global WinSetOption filetype=(javascript|typescript|css|scss|json|markdown|yaml|html) %{
+#     set-option buffer formatcmd "prettier --stdin-filepath=%val{buffile}"
+#     hook buffer -group format BufWritePre .* format
+# }
+
+hook global WinSetOption filetype=terraform %{
+    set-option buffer formatcmd 'terraform fmt -'
+    hook buffer -group format BufWritePre .* format
+}
+
+# hook global WinSetOption filetype=typescript %{
+#       set window lintcmd 'npx tslint --config %sh(git rev-parse --show-toplevel)/tslint.json --formatters-dir ~/.config/kak/tslint/ -t kakoune'
+#       lint-enable
+#       lint
+# }
+
+# hook global WinSetOption filetype=typescript %{
+#        set window lintcmd 'eslint --format ~/.config/kak/eslint/eslint.js --config ~/.config/kak/eslint/.eslintrc.json'
+#        lint-enable
+#        lint
+#  }
+
+hook global NormalKey y %{ nop %sh{
+      printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
+}}
+
+map global user p -docstring 'paste from clipboard' '<a-!>xsel --output --clipboard<ret>'
+map global user w -docstring 'easy-motion (word)' :easy-motion-w<ret>
+map global user W -docstring 'easy-motion (WORD)' :easy-motion-W<ret>
+map global user l -docstring 'easy-motion (line)' :easy-motion-line<ret>
+map global user , -docstring 'code-actions' :lsp-code-actions<ret>
+
