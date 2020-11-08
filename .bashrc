@@ -39,14 +39,14 @@ parse_git_branch() {
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
 # Change the window title of X terminals
-case ${TERM} in
-	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
-		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-		;;
-	screen*)
-		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-		;;
-esac
+#case ${TERM} in
+#	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
+#		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+#		;;
+#	screen*)
+#		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+#		;;
+#esac
 
 
 # if ! pgrep -u "$USER" ssh-agent > /dev/null; then
@@ -125,9 +125,9 @@ alias dcam='ffmpeg -f x11grab -framerate 30 -video_size 1920x1080 -i :0.0+0,360 
 alias xm='xlayoutdisplay && ~/.fehbg'
 alias yt='youtube-dl --write-sub --embed-subs'
 
-xhost +local:root > /dev/null 2>&1
+#xhost +local:root > /dev/null 2>&1
 
-complete -cf sudo
+#complete -cf sudo
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
@@ -170,8 +170,7 @@ ex ()
 }
 
 # better yaourt colors
-export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
+#export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 
 # .scripts
 export PATH="$HOME/.scripts:$PATH"
-
