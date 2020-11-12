@@ -21,7 +21,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Key repeat rate
 exec --no-startup-id xset r rate 250 50
-exec setxkbmap -layout gb
+exec setxkbmap -layout gb,gb -variant ,colemak -option grp:alt_shift_toggle
 
 exec --no-startup-id picom --corner-radius 15
 
