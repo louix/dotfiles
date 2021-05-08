@@ -7,12 +7,9 @@
 !/.bashrc
 !/.zshrc
 !/.inputrc
-!/.ssh/config
-!/.task/
-!/.task/**
-!/.taskrc
 !/.gitignore
 
+!/.config/
 !/.config/dunst/
 !/.config/dunst/**
 !/.config/emacs/
@@ -39,8 +36,11 @@
 !/.config/wallpaper.*
 
 # Blacklist
-.config/kak/plugins/
-.config/emacs/eln-cache/
-.config/emacs/elpa/
+/.config/kak/plugins/
+/.config/emacs/eln-cache/
+/.config/emacs/elpa/
 
 **/node_modules/
+**/.cache/
+**/cache/
+/.cargo
