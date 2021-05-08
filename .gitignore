@@ -1,1 +1,4 @@
 .config/kak/plugins/
+.config/emacs/eln-cache/
+.config/emacs/elpa/
+**/node_modules/
