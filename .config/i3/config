@@ -26,7 +26,7 @@ exec --no-startup-id picom
 # Set up monitors
 exec --no-startup-id ~/.scripts/xlayoutdisplay
 # Set wallpaper
-exec --no-startup-id ~/.fehbg
+exec --no-startup-id ~/.scripts/fehbg
 # Notification Daemon
 exec --no-startup-id dunst
 # Clipboard manager
