@@ -1,0 +1,2 @@
+#!/bin/bash
+clipctl disable && ykman oath code $(ykman oath list | dmenu) -s | xclip -se c; clipctl enable
