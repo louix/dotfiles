@@ -25,6 +25,7 @@ plug "andreyorst/fzf.kak" config %{
     map -docstring 'fzf mode' global normal '<c-p>' ': fzf-mode<ret>'
 } defer fzf %{
     set-option global fzf_file_command 'rg'
+    set-option global fzf_grep_command 'rg'
 }
 
 plug "eraserhd/parinfer-rust" do %{
@@ -37,7 +38,8 @@ plug "eraserhd/parinfer-rust" do %{
 }
 
 eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
+#set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log" # kak-lsp debug
+hook global WinSetOption filetype=(rust|python|go|javascript|typescript|vue|c|cpp|elixir) %{
     lsp-enable-window
     lsp-auto-hover-enable
     cursorline
@@ -63,11 +65,11 @@ hook global WinSetOption filetype=terraform %{
 #       lint
 # }
 
-# hook global WinSetOption filetype=typescript %{
-#        set window lintcmd 'eslint --format ~/.config/kak/eslint/eslint.js --config ~/.config/kak/eslint/.eslintrc.json'
-#        lint-enable
-#        lint
-#  }
+hook global WinSetOption filetype=typescript %{
+      set window lintcmd 'eslint --format ~/.config/kak/eslint/eslint.js --config ~/.config/kak/eslint/.eslintrc.json'
+      lint-enable
+      lint
+}
 
 hook global NormalKey y %{ nop %sh{
       printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
@@ -78,4 +80,5 @@ map global user w -docstring 'easy-motion (word)' :easy-motion-w<ret>
 map global user W -docstring 'easy-motion (WORD)' :easy-motion-W<ret>
 map global user l -docstring 'easy-motion (line)' :easy-motion-line<ret>
 map global user , -docstring 'code-actions' :lsp-code-actions<ret>
+map global user r -docstring 'refactor' :lsp-rename-prompt<ret>
 
