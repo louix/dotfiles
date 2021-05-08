@@ -1,0 +1,11 @@
+[user]
+	email = 28579246+louix@users.noreply.github.com
+	name = louix
+[http]
+	postBuffer = 524288000
+[core]
+	excludesFile = ~/.config/git/ignore
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
