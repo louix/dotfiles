@@ -1,0 +1,13 @@
+configuration {
+  theme: "slate";
+  location: 2;
+  show-icons: true;
+  font: "DejaVu Sans Mono 10";
+  hide-scrollbar: true;
+  lines: 6;
+  columns: 1;
+  line-margin: 0;
+  separator-style: none;
+  yoffset: 50;
+  matching: "fuzzy";
+}
