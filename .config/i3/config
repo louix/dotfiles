@@ -19,30 +19,57 @@ font pango:DejaVu Sans Mono 3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# Key repeat rate
+# Increase key repeat rate
 exec --no-startup-id xset r rate 250 50
-exec setxkbmap -layout gb,gb -variant ,colemak -option grp:alt_shift_toggle
-
-exec --no-startup-id picom --corner-radius 15
-
-# Setup background
-exec --no-startup-id ~/.scripts/fehbg
-
+# Compositor with rounded corners
+exec --no-startup-id picom
+# Set up monitors
+exec --no-startup-id ~/.scripts/xlayoutdisplay
+# Set wallpaper
+exec --no-startup-id ~/.fehbg
+# Notification Daemon
 exec --no-startup-id dunst
-exec --no-startup-id redshift -l 51.50853:-0.12574
-exec --no-startup-id volctl
+# Clipboard manager
 exec --no-startup-id CM_SELECTIONS=clipboard CM_DEBUG=1 clipmenud
-
-# Mute mic on startup
+# Mute mic
 exec --no-startup-id pactl set-sink-mute @DEFAULT_SOURCE true
+# Sort out oath keys
+exec --no-startup-id ykman oath list
+# Start screenshot tool
+#exec --no-startup-id flameshot
+
+# Keyboard layout
+# exec ~/.scripts/colemak
 
 # Floating workspaces on 1 and 5 (usually first for monitor 1 and 2)
 # for_window [workspace=1] floating enable
 # for_window [workspace=5] floating enable
+# workspace_auto_back_and_forth yes
+
+# Plasma compatibility improvements
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+for_window [class="yakuake"] floating enable
+for_window [class="systemsettings"] floating enable
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="plasma.emojier"] floating enable
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
+no_focus [class="plasmashell" window_type="notification"]
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [class="Slack"] move --no-auto-back-and-forth container to workspace $ws5
 
 # Gaps
 # smart_gaps on
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 1
 gaps outer 2
 gaps inner 10
 
@@ -58,8 +85,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-bindsym grave exec --no-startup-id pactl set-source-volume @DEFAULT_SOURCE@ 55000 && pactl set-source-mute @DEFAULT_SOURCE@ false
-bindsym --release grave exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ true
+bindsym $mod+Escape exec --no-startup-id pactl set-source-volume @DEFAULT_SOURCE@ 50000 && pactl set-source-mute @DEFAULT_SOURCE@ toggle
+#bindsym --release grave exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ true
 
 # Kill all heavy processes
 bindsym Ctrl+Mod1+Delete exec --no-startup-id pkill npm && pkill node && pkill firefox
@@ -77,10 +104,11 @@ bindsym $mod+Shift+q kill
 bindsym Print exec maim | xclip -selection clipboard -t image/png && maim ~/media/captures/$(date +%s).png
 
 # snip
-bindsym Shift+Print exec maim -s | xclip -selection clipboard -t image/png
+#bindsym Shift+Print exec maim -s | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec flameshot gui
 
 # rec
-bindsym $mod+Print exec --no-startup-id ~/.scripts/byzanz-record-region 3
+bindsym $mod+Print exec --no-startup-id ~/.scripts/byzanz-record-region 5
 
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -89,11 +117,16 @@ bindsym $mod+minus scratchpad show
 focus_wrapping no
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -fn 'DejaVu Sans Mono-8' -nb "#000000" -sb "#ffffff" -sf "#000000" -nf "#ffffff"
-bindsym $mod+p exec --no-startup-id passmenu -fn 'DejaVu Sans Mono-8' -nb "#000000" -sb "#ffffff" -sf "#000000" -nf "#ffffff"
-bindsym $mod+Shift+p exec --no-startup-id CM_HISTLENGTH=2 clipmenu -fn 'DejaVu Sans Mono-8' -nb "#000000" -sb "#ffffff" -sf "#000000" -nf "#ffffff"
-#bindsym $mod+d exec --no-startup-id rofi -show drun
-
+#bindsym $mod+d exec --no-startup-id dmenu_run -dim 0.0 -fn 'DejaVu Sans Mono-8' -nb "#000000" -sb "#ffffff" -sf "#000000" -nf "#ffffff"
+#bindsym $mod+p exec --no-startup-id passmenu -dim 0.0 -fn 'DejaVu Sans Mono-8' -nb "#000000" -sb "#ffffff" -sf "#000000" -nf "#ffffff"
+#bindsym $mod+Shift+p exec --no-startup-id CM_HISTLENGTH=5 clipmenu -dim 0.0 -fn 'DejaVu Sans Mono-8' -nb "#000000" -sb "#ffffff" -sf "#000000" -nf "#ffffff"
+bindsym $mod+Shift+p exec --no-startup-id CM_HISTLENGTH=5 clipmenu
+bindsym $mod+p exec --no-startup-id ./.scripts/passmenu
+bindsym $mod+d exec --no-startup-id rofi -show drun
+#bindsym $mod+Shift+e exec --no-startup-id rofi -show emoji -modi emoji
+bindsym $mod+Shift+a exec --no-startup-id rofi -show window -modi window
+bindsym $mod+o exec --no-startup-id ./.scripts/ykoath
+bindsym $mod+Shift+c exec --no-startup-id chameleon | xclip -se c
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -188,11 +221,12 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -234,7 +268,8 @@ bar {
     font pango:DejaVu Sans Mono 8
     i3bar_command i3bar
     mode hide
-    status_command .scripts/i3status.sh
+    #status_command .scripts/i3status.sh
+    status_command /usr/bin/i3status-rs
 
     colors {
         #background #00000000
