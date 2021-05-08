@@ -1,4 +1,33 @@
+# Ignore Everything
+*
+
+# Whitelist
+!/.scripts/
+!/.bashrc
+!/.zshrc
+!/.inputrc
+!/.ssh/config
+!/.task/
+!/.taskrc
+
+!/.config/dunst/
+!/.config/emacs/
+!/.config/flameshot.ini
+!/.config/fontconfig/
+!/.config/i3/
+!/.config/i3status/
+!/.config/i3status-rust/
+!/.config/kak/
+!/.config/kak-lsp/
+!/.config/konsolerc
+!/.config/locale.conf
+!/.config/picom/
+!/.config/rofi/
+!/.config/wallpaper.*
+
+# Blacklist
 .config/kak/plugins/
 .config/emacs/eln-cache/
 .config/emacs/elpa/
+
 **/node_modules/
