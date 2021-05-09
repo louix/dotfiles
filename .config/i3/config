@@ -124,7 +124,8 @@ bindsym $mod+Shift+p exec --no-startup-id CM_HISTLENGTH=5 clipmenu
 bindsym $mod+p exec --no-startup-id ./.scripts/passmenu
 bindsym $mod+d exec --no-startup-id rofi -show drun
 #bindsym $mod+Shift+e exec --no-startup-id rofi -show emoji -modi emoji
-bindsym $mod+Shift+a exec --no-startup-id rofi -show window -modi window
+#bindsym $mod+Shift+a exec --no-startup-id rofi -show window -modi window
+bindsym $mod+Shift+a exec --no-startup-id dunstctl history-pop
 bindsym $mod+o exec --no-startup-id ./.scripts/ykoath
 bindsym $mod+Shift+c exec --no-startup-id chameleon | xclip -se c
 

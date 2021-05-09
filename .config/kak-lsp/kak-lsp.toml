@@ -19,17 +19,17 @@ args = ["/home/louis/.nvm/versions/node/v11.15.0/bin/intelephense"]
 #enable = true
 #lint = true
 
-[language.typescript]
-filetypes = ["typescript"]
-roots = ["package.json"]
-command = "typescript-language-server"
-args = ["--stdio"]
+#[language.typescript]
+#filetypes = ["typescript"]
+#roots = ["package.json"]
+#command = "typescript-language-server"
+#args = ["--stdio"]
 
 [language.tsx]
 filetypes = ["typescript"]
 roots = ["package.json"]
 command = "typescript-language-server"
-#args = ["--stdio"]
+args = ["--stdio"]
 
 #[language.typescript]
 #filetypes = ["typescript"]
