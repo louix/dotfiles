@@ -243,3 +243,17 @@ export MAKEFLAGS="-j$(nproc)"
 
 # zim prompt
 # export PWD_COLOR="white"
+
+if [ -f "$HOME/.asdf/asdf.sh" ]; then
+    source $HOME/.asdf/asdf.sh
+    # append completions to fpath
+    fpath=(${ASDF_DIR}/completions $fpath)
+    # initialise completions with ZSH's compinit
+    autoload -Uz compinit
+    compinit
+fi
+
+if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
+    source /usr/share/nvm/init-nvm.sh
+fi
+
