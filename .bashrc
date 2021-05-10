@@ -25,7 +25,7 @@ fi
 # Colors!
 PS1='\W$(parse_git_branch) \$ '
 #alias ls='ls --color=auto'
-alias ls="exa"
+#alias ls="exa"
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
@@ -68,7 +68,7 @@ alias tab='xinput map-to-output "Tablet Monitor Pen Pen (0)" HDMI-0'
 alias aa='~/Android/Sdk/emulator/emulator -avd Pixel_3a_API_30_x86'
 alias vnc='x0vncserver -display :0 -passwordfile ~/.vnc/passwd'
 alias stress='s-tui'
-alias sudo="doas"
+#alias sudo="doas"
 
 # passwordstore
 p () {
@@ -88,4 +88,13 @@ export HISTCONTROL=ignorespace
 export PATH="$HOME/.local/bin:$PATH"
 
 eval "$(direnv hook bash)"
-source /usr/share/nvm/init-nvm.sh
+
+if [ -f "$HOME/.asdf/asdf.sh" ]; then
+    source $HOME/.asdf/asdf.sh
+    source $HOME/.asdf/completions/asdf.bash
+fi
+
+if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
+    source /usr/share/nvm/init-nvm.sh
+fi
+
