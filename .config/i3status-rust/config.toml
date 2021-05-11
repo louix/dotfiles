@@ -2,11 +2,7 @@ theme = "native"
 icons = "awesome"
 
 [[block]]
-block = "custom"
-command = '~/.scripts/dunst-status.sh'
-on_click = "dunstctl set-paused toggle"
-json = true
-interval = 1
+block = "notify"
 
 [[block]]
 block = "custom"
