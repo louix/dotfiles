@@ -3,6 +3,13 @@ icons = "awesome"
 
 [[block]]
 block = "custom"
+command = '~/.scripts/dunst-status.sh'
+on_click = "dunstctl set-paused toggle"
+json = true
+interval = 1
+
+[[block]]
+block = "custom"
 command = '~/.scripts/mute-status.sh'
 on_click = "pactl set-source-volume @DEFAULT_SOURCE@ 55000 && pactl set-source-mute @DEFAULT_SOURCE@ toggle"
 json = true
