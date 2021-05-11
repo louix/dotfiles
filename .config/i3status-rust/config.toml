@@ -2,9 +2,6 @@ theme = "native"
 icons = "awesome"
 
 [[block]]
-block = "notify"
-
-[[block]]
 block = "custom"
 command = '~/.scripts/mute-status.sh'
 on_click = "pactl set-source-volume @DEFAULT_SOURCE@ 55000 && pactl set-source-mute @DEFAULT_SOURCE@ toggle"
@@ -53,3 +50,7 @@ format = "{utilization} {barchart}"
 block = "time"
 interval = 60
 format = "%a %d/%m %R"
+
+[[block]]
+block = "notify"
+
