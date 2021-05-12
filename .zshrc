@@ -232,7 +232,6 @@ p () {
 eval "$(direnv hook zsh)"
 
 #prompt walters
-source /usr/share/nvm/init-nvm.sh
 export PATH="/home/louix/.local/share/gem/ruby/2.7.0/bin:$PATH"
 export DENO_INSTALL="/home/louix/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
