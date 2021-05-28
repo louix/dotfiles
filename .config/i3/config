@@ -127,7 +127,7 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 #bindsym $mod+Shift+a exec --no-startup-id rofi -show window -modi window
 bindsym $mod+Shift+a exec --no-startup-id dunstctl history-pop
 bindsym $mod+o exec --no-startup-id ./.scripts/ykoath
-bindsym $mod+Shift+c exec --no-startup-id chameleon | xclip -se c
+bindsym $mod+Shift+c exec --no-startup-id ./.scripts/colour-picker.sh | xclip -se c
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
