@@ -6,8 +6,8 @@ command = "rls"
 [language.php]
 filetypes = ["php"]
 roots = ["composer.json"]
-command = "node"
-args = ["/home/louis/.nvm/versions/node/v11.15.0/bin/intelephense"]
+command = "npx"
+args = ["intelephense"]
 
 #[language.deno]
 #filetypes = ["typescript", "javascript"]
@@ -28,10 +28,6 @@ args = ["/home/louis/.nvm/versions/node/v11.15.0/bin/intelephense"]
 [language.tsx]
 filetypes = ["typescript"]
 roots = ["package.json"]
-command = "typescript-language-server"
-args = ["--stdio"]
+command = "npx"
+args = ["typescript-language-server", "--stdio"]
 
-#[language.typescript]
-#filetypes = ["typescript"]
-#roots = ["package.json", "tsconfig.json"]
-#command = "javascript-typescript-stdio"
