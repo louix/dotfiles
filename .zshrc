@@ -135,7 +135,7 @@ SAVEHIST=100000
 # bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/louix/.zshrc'
+zstyle :compinstall filename '$HOME/.zshrc'
 
 autoload -Uz compinit promptinit
 compinit
@@ -232,11 +232,11 @@ p () {
 eval "$(direnv hook zsh)"
 
 #prompt walters
-export PATH="/home/louix/.local/share/gem/ruby/2.7.0/bin:$PATH"
-export DENO_INSTALL="/home/louix/.deno"
+export PATH="$HOME/.local/share/gem/ruby/2.7.0/bin:$PATH"
+export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
-export PATH="/home/louix/.local/bin:$PATH"
-
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 # Multi-core make
 export MAKEFLAGS="-j$(nproc)"
 
@@ -255,4 +255,3 @@ fi
 if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
     source /usr/share/nvm/init-nvm.sh
 fi
-
