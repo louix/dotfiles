@@ -1,6 +1,8 @@
 [user]
-	email = 28579246+louix@users.noreply.github.com
+	email = louis@otsuka.re
 	name = louix
+	signkey = 31DC4D03E936A692
+	signingkey = 31DC4D03E936A692
 [http]
 	postBuffer = 524288000
 [core]
@@ -9,3 +11,9 @@
 	rebase = false
 [init]
 	defaultBranch = main
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
