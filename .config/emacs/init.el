@@ -27,3 +27,22 @@
 (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+
+(setq-default display-line-numbers 'visual
+              display-line-numbers-widen t
+              ;; this is the default
+              display-line-numbers-current-absolute t)
+
+(defun noct:relative ()
+  (setq-local display-line-numbers 'visual))
+
+(defun noct:absolute ()
+  (setq-local display-line-numbers t))
+
+(add-hook 'evil-insert-state-entry-hook #'noct:absolute)
+(add-hook 'evil-insert-state-exit-hook #'noct:relative)
+
+;; example of customizing colors
+(custom-set-faces '(line-number-current-line ((t :weight bold
+                                                 :foreground "goldenrod"
+                                                 :background "slate gray"))))

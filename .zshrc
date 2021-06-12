@@ -240,9 +240,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Multi-core make
 export MAKEFLAGS="-j$(nproc)"
 
-# zim prompt
-# export PWD_COLOR="white"
-
 if [ -f "$HOME/.asdf/asdf.sh" ]; then
     source $HOME/.asdf/asdf.sh
     # append completions to fpath

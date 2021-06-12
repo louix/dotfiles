@@ -1,33 +1,17 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
-
 plug "andreyorst/plug.kak" noload
-
-plug "ul/kak-tree"
 plug "alexherbo2/auto-pairs.kak"
 plug "danr/kakoune-easymotion"
 plug "occivink/kakoune-gdb"
 plug "occivink/kakoune-sudo-write"
 plug "insipx/kak-crosshairs"
-plug "schemar/kak-jsts" config %{
-    hook global WinSetOption filetype=(javascript|typescript) %{
-        map window user L -docstring 'lint' ': lint<ret>'
-        map window user f -docstring 'format' ': format-tslint<ret>'
-        
-        # If you want to format before every write, you could do s.th. like this:
-        hook window BufWritePre .* %{
-            evaluate-commands -no-hooks %{
-                format-tslint
-            }
-        }
-    }
-}
 plug "andreyorst/fzf.kak" config %{
     map -docstring 'fzf mode' global normal '<c-p>' ': fzf-mode<ret>'
-} defer fzf %{
+} defer 'fzf-file' %{
     set-option global fzf_file_command 'rg'
+} defer 'fzf-grep' %{
     set-option global fzf_grep_command 'rg'
 }
-
 plug "eraserhd/parinfer-rust" do %{
     cargo install --force --path .
     cargo clean
@@ -36,7 +20,6 @@ plug "eraserhd/parinfer-rust" do %{
         parinfer-enable-window -smart
     }
 }
-
 eval %sh{kak-lsp --kakoune -s $kak_session}
 #set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log" # kak-lsp debug
 hook global WinSetOption filetype=(rust|python|go|javascript|typescript|vue|c|cpp|elixir) %{
@@ -45,6 +28,12 @@ hook global WinSetOption filetype=(rust|python|go|javascript|typescript|vue|c|cp
     cursorline
     add-highlighter global/ number-lines
     set-option global ui_options ncurses_assistant=off
+    map window user e -docstring 'next error (lsp)' :lsp-find-error<ret>
+    map window user , -docstring 'code-actions' :lsp-code-actions<ret>
+    map window user . -docstring 'save-all-buffers' :write-all<ret>
+    map window user r -docstring 'refactor' :lsp-rename-prompt<ret>
+    map window user L -docstring 'lint' :lint<ret>
+    map window user F -docstring 'format' :format<ret>
 }
 
 hook global WinSetOption filetype=terraform %{
@@ -60,7 +49,3 @@ map global user p -docstring 'paste from clipboard' '<a-!>xsel --output --clipbo
 map global user w -docstring 'easy-motion (word)' :easy-motion-w<ret>
 map global user W -docstring 'easy-motion (WORD)' :easy-motion-W<ret>
 map global user l -docstring 'easy-motion (line)' :easy-motion-line<ret>
-map global user e -docstring 'next error (lsp)' :lsp-find-error<ret>
-map global user , -docstring 'code-actions' :lsp-code-actions<ret>
-map global user r -docstring 'refactor' :lsp-rename-prompt<ret>
-
