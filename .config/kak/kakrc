@@ -20,6 +20,9 @@ plug "eraserhd/parinfer-rust" do %{
         parinfer-enable-window -smart
     }
 }
+plug "andreyorst/powerline.kak" config %{
+    powerline-start
+}
 eval %sh{kak-lsp --kakoune -s $kak_session}
 #set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log" # kak-lsp debug
 hook global WinSetOption filetype=(rust|python|go|javascript|typescript|vue|c|cpp|elixir) %{
@@ -27,13 +30,15 @@ hook global WinSetOption filetype=(rust|python|go|javascript|typescript|vue|c|cp
     lsp-auto-hover-enable
     cursorline
     add-highlighter global/ number-lines
-    set-option global ui_options ncurses_assistant=off
+    set-option window ui_options ncurses_assistant=off
     map window user e -docstring 'next error (lsp)' :lsp-find-error<ret>
     map window user , -docstring 'code-actions' :lsp-code-actions<ret>
     map window user . -docstring 'save-all-buffers' :write-all<ret>
     map window user r -docstring 'refactor' :lsp-rename-prompt<ret>
     map window user L -docstring 'lint' :lint<ret>
     map window user F -docstring 'format' :format<ret>
+    set-option window indentwidth 2
+    set-option window tabstop 2
 }
 
 hook global WinSetOption filetype=terraform %{
