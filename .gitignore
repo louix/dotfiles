@@ -36,6 +36,8 @@
 !/.config/picom/**
 !/.config/rofi/
 !/.config/rofi/**
+!/.config/nu/
+!/.config/nu/**
 !/.config/wallpaper.*
 
 # Blacklist
