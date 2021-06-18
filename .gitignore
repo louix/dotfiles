@@ -9,6 +9,7 @@
 !/.inputrc
 !/.gitignore
 !/.gitconfig
+!/.configuration.nix
 
 !/.config/
 !/.config/dunst/
@@ -38,6 +39,8 @@
 !/.config/rofi/**
 !/.config/nu/
 !/.config/nu/**
+!/.config/nixos/
+!/.config/nixos/**
 !/.config/wallpaper.*
 
 # Blacklist
