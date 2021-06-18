@@ -30,7 +30,7 @@ exec --no-startup-id ~/.scripts/fehbg
 # Notification Daemon
 exec --no-startup-id dunst
 # Clipboard manager
-exec --no-startup-id CM_SELECTIONS=clipboard CM_DEBUG=1 clipmenud
+exec --no-startup-id CM_LAUNCHER=rofi CM_SELECTIONS=clipboard CM_DEBUG=1 clipmenud
 # Mute mic
 exec --no-startup-id pactl set-sink-mute @DEFAULT_SOURCE true
 # Sort out oath keys
@@ -95,7 +95,7 @@ bindsym Ctrl+Mod1+Delete exec --no-startup-id pkill npm && pkill node && pkill f
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec konsole
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -120,7 +120,7 @@ focus_wrapping no
 #bindsym $mod+d exec --no-startup-id dmenu_run -dim 0.0 -fn 'DejaVu Sans Mono-8' -nb "#000000" -sb "#ffffff" -sf "#000000" -nf "#ffffff"
 #bindsym $mod+p exec --no-startup-id passmenu -dim 0.0 -fn 'DejaVu Sans Mono-8' -nb "#000000" -sb "#ffffff" -sf "#000000" -nf "#ffffff"
 #bindsym $mod+Shift+p exec --no-startup-id CM_HISTLENGTH=5 clipmenu -dim 0.0 -fn 'DejaVu Sans Mono-8' -nb "#000000" -sb "#ffffff" -sf "#000000" -nf "#ffffff"
-bindsym $mod+Shift+p exec --no-startup-id CM_HISTLENGTH=5 clipmenu
+bindsym $mod+Shift+p exec --no-startup-id CM_LAUNCHER=rofi CM_HISTLENGTH=5 clipmenu
 bindsym $mod+p exec --no-startup-id ./.scripts/passmenu
 bindsym $mod+d exec --no-startup-id rofi -show drun
 #bindsym $mod+Shift+e exec --no-startup-id rofi -show emoji -modi emoji
