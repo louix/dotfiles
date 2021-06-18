@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 
 # Duration and output file
 if [ $# -gt 0 ]; then
