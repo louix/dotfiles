@@ -110,6 +110,7 @@ in {
   environment.systemPackages = with pkgs; [
       # Core
       unstable.nushell
+      bash
       starship
       git
       fzf
@@ -120,9 +121,15 @@ in {
       kak-lsp
       yubikey-manager
       yubikey-personalization
+      xsel
+      xdotool
+      xclip
       clipmenu
+      pass
+      rofi-pass
       dunst
       konsole
+      usbutils
 
       # Apps
       firefox-devedition-bin
