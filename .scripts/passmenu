@@ -1,2 +1,2 @@
-#!/bin/bash
 clipctl disable; passmenu; clipctl enable
+#!/usr/bin/env bash

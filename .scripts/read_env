@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 if [[ -f $1 ]]; then
     while read in; do eval "$in"; done < $1
 else
