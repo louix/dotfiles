@@ -78,8 +78,8 @@ in {
   };
 
   # Add Yubikey udev rules
-  services.udev.packages = [
-      pkgs.yubikey-personalization
+  services.udev.packages = with pkgs; [
+      yubikey-personalization
   ];
 
   services.openssh.enable = true;
@@ -130,7 +130,8 @@ in {
       dunst
       konsole
       usbutils
-
+      pulseaudio
+      
       # Apps
       firefox-devedition-bin
       vivaldi
@@ -139,6 +140,7 @@ in {
       barrier
       flameshot
       pavucontrol
+      slack
 
       # Other
       feh
