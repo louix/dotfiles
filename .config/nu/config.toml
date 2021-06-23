@@ -1,9 +1,8 @@
 skip_welcome_message = true
 prompt = "starship prompt"
 startup = [
-  "def new-agent [] { ssh-agent -s | lines | split column ';' | where Column2 != '' | get Column1 | each { split column '=' name value }}",
-  "def ssh-agent [] { let count = (ps | where name == 'ssh-agent' | length); if $count == 0 { new-agent } { }}",
-  "ssh-agent | load-env",
+  "gpg-connect-agent /bye",
+  "[[name, value]; ['GPG_TTY', (tty)] ['SSH_AUTH_SOCK', '/run/user/1000/gnupg/S.gpg-agent.ssh']] | load-env",
   "alias gg = lazygit"
 ]
 table_mode = "rounded"
