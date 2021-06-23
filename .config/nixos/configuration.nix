@@ -83,7 +83,6 @@ in {
   ];
 
   services.openssh.enable = true;
-  services.pcscd.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -106,6 +105,7 @@ in {
 
   programs.gnupg.agent = {
     enable = true;
+    enableSSHSupport = true;
     pinentryFlavor = "qt";
   };
 
