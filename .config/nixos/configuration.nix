@@ -96,10 +96,13 @@ in {
       pulse.enable = true;
   };
 
+  services.picom.enable = true;
+
   services.openvpn.servers.vpn = {
       autoStart = false;
       config = "config /etc/nixos/config.ovpn";
   };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -117,6 +120,7 @@ in {
       bash
       starship
       git
+      git-crypt
       fzf
       ripgrep
       ripgrep-all
@@ -125,16 +129,19 @@ in {
       kak-lsp
       yubikey-manager
       yubikey-personalization
+      opensc
       xsel
       xdotool
       xclip
       clipmenu
-      pass
+      (pass.withExtensions (exts: [ exts.pass-otp ]))
       rofi-pass
+      libnotify
       dunst
       konsole
       usbutils
       pulseaudio
+      direnv
       
       # Apps
       firefox-devedition-bin
@@ -145,11 +152,15 @@ in {
       flameshot
       pavucontrol
       slack
+      lastpass-cli
+      taskwarrior
 
       # Other
       feh
       lazygit
       noisetorch
+      v4l-utils
+      zbar
   ];
 
   fonts.fonts = with pkgs; [
@@ -161,7 +172,6 @@ in {
     extraGroups = [ "wheel" ];
     shell = pkgs.nushell;
   };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

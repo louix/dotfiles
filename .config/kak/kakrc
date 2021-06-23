@@ -8,7 +8,7 @@ plug "insipx/kak-crosshairs"
 plug "andreyorst/fzf.kak" config %{
     map -docstring 'fzf mode' global normal '<c-p>' ': fzf-mode<ret>'
 } defer 'fzf-file' %{
-    set-option global fzf_file_command 'rg'
+    set-option global fzf_file_command 'fd -HI'
 } defer 'fzf-grep' %{
     set-option global fzf_grep_command 'rg'
 }
@@ -54,3 +54,7 @@ map global user p -docstring 'paste from clipboard' '<a-!>xsel --output --clipbo
 map global user w -docstring 'easy-motion (word)' :easy-motion-w<ret>
 map global user W -docstring 'easy-motion (WORD)' :easy-motion-W<ret>
 map global user l -docstring 'easy-motion (line)' :easy-motion-line<ret>
+map global user < -docstring 'previous buffer' :buffer-previous<ret>
+map global user > -docstring 'next buffer' :buffer-next<ret>
+map global user d -docstring 'delete buffer' :delete-buffer<ret>
+map global user D -docstring 'force delete buffer' :delete-buffer!<ret>
