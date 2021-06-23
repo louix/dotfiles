@@ -97,6 +97,10 @@ in {
       pulse.enable = true;
   };
 
+  services.openvpn.servers.vpn = {
+      autoStart = false;
+      config = "config /etc/nixos/config.ovpn";
+  };
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 

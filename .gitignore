@@ -47,6 +47,7 @@
 /.config/kak/plugins/
 /.config/emacs/eln-cache/
 /.config/emacs/elpa/
+/.config/nixos/**.ovpn
 
 **/node_modules/
 **/.cache/
