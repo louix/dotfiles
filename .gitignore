@@ -17,8 +17,6 @@
 !/.config/emacs/
 !/.config/emacs/**
 !/.config/flameshot.ini
-!/.config/fontconfig/
-!/.config/fontconfig/**
 !/.config/git/
 !/.config/git/**
 !/.config/i3/
@@ -31,7 +29,6 @@
 !/.config/kak/**
 !/.config/kak-lsp/
 !/.config/kak-lsp/**
-!/.config/konsolerc
 !/.config/locale.conf
 !/.config/picom/
 !/.config/picom/**
