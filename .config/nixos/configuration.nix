@@ -151,10 +151,14 @@ in {
       barrier
       flameshot
       pavucontrol
+      paprefs
       slack
       lastpass-cli
       taskwarrior
+
+      # Dev
       jetbrains.webstorm
+      awscli2
 
       # Other
       feh
