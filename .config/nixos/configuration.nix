@@ -151,10 +151,13 @@ in {
       barrier
       flameshot
       pavucontrol
-      paprefs
       slack
+      spotifyd
+      spotify-qt
       lastpass-cli
       taskwarrior
+      insomnia
+      zathura
 
       # Dev
       jetbrains.webstorm
@@ -163,9 +166,15 @@ in {
       # Other
       feh
       lazygit
+      tig
       noisetorch
       v4l-utils
       zbar
+      slop
+      byzanz
+      sxiv
+      s-tui
+      jq
   ];
 
   fonts.fonts = with pkgs; [
