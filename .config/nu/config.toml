@@ -7,7 +7,12 @@ startup = [
   "gpg-connect-agent /bye",
   "[[name, value]; ['GPG_TTY', (tty)] ['SSH_AUTH_SOCK', '/run/user/1000/gnupg/S.gpg-agent.ssh']] | load-env",
   "alias gg = lazygit",
-]
+  "def ww [] { cd ~/dev/gridshare-edge/; nix-shell }",
+  "def je [] { cd (fd . '/home/louix/dev/gridshare-edge' --type directory | fzf) }",
+  #"mkdir ~/.cache/starship/",
+  #"starship init nu | save ~/.cache/starship/init.nu",
+  #"source ~/.cache/starship/init.nu"
+ ]
 table_mode = "rounded"
 
 [line_editor]

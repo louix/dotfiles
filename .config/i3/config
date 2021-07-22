@@ -35,8 +35,6 @@ exec --no-startup-id CM_LAUNCHER=rofi CM_SELECTIONS=clipboard CM_DEBUG=1 clipmen
 exec --no-startup-id pactl set-sink-mute @DEFAULT_SOURCE true
 # Sort out oath keys
 exec --no-startup-id ykman oath list
-# Start screenshot tool
-#exec --no-startup-id flameshot
 
 # Keyboard layout
 # exec ~/.scripts/colemak
@@ -85,7 +83,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-bindsym $mod+Escape exec --no-startup-id pactl set-source-volume @DEFAULT_SOURCE@ 50000 && pactl set-source-mute @DEFAULT_SOURCE@ toggle
+#bindsym $mod+Escape exec --no-startup-id pactl set-source-volume @DEFAULT_SOURCE@ 50000 && pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym $mod+Escape exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 #bindsym --release grave exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ true
 
 # Kill all heavy processes
@@ -269,8 +268,8 @@ bar {
     font pango:DejaVu Sans Mono 8
     i3bar_command i3bar
     mode hide
-    status_command .scripts/i3status.sh
-    #status_command /usr/bin/i3status-rs
+    #status_command .scripts/i3status.sh
+    status_command /run/current-system/sw/bin/i3status-rs
 
     colors {
         #background #00000000
