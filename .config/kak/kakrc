@@ -5,6 +5,7 @@ plug "danr/kakoune-easymotion"
 plug "occivink/kakoune-gdb"
 plug "occivink/kakoune-sudo-write"
 plug "insipx/kak-crosshairs"
+plug "Bodhizafa/kak-rainbow"
 plug "andreyorst/fzf.kak" config %{
     map -docstring 'fzf mode' global normal '<c-p>' ': fzf-mode<ret>'
 } defer 'fzf-file' %{
@@ -25,10 +26,10 @@ plug "andreyorst/powerline.kak" config %{
 }
 eval %sh{kak-lsp --kakoune -s $kak_session}
 #set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log" # kak-lsp debug
-hook global WinSetOption filetype=(rust|python|go|javascript|typescript|vue|c|cpp|elixir) %{
+hook global WinSetOption filetype=(rust|python|go|javascript|typescript|tsx|deno|vue|c|cpp|elixir) %{
     lsp-enable-window
     lsp-auto-hover-enable
-    cursorline
+    rainbow-enable-window
     add-highlighter global/ number-lines
     set-option window ui_options ncurses_assistant=off
     map window user e -docstring 'next error (lsp)' :lsp-find-error<ret>

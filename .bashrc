@@ -78,6 +78,11 @@ p () {
     clipctl enable
 }
 
+je() {
+  cd ~/dev/gridshare-edge
+  cd $(fd . --type directory | fzf)
+}
+
 shopt -s expand_aliases
 shopt -s histappend
 
@@ -98,3 +103,4 @@ if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
     source /usr/share/nvm/init-nvm.sh
 fi
 
+eval "$(starship init bash)"
