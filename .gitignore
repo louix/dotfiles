@@ -34,6 +34,8 @@
 !/.config/picom/**
 !/.config/rofi/
 !/.config/rofi/**
+!/.config/rofi-pass/
+!/.config/rofi-pass/**
 !/.config/nu/
 !/.config/nu/**
 !/.config/nixos/
