@@ -103,4 +103,5 @@ if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
     source /usr/share/nvm/init-nvm.sh
 fi
 
+export STARSHIP_CONFIG=~/.config/starship/bash.toml
 eval "$(starship init bash)"
