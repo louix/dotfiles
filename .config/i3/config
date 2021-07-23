@@ -269,7 +269,7 @@ bar {
     i3bar_command i3bar
     mode hide
     #status_command .scripts/i3status.sh
-    status_command /run/current-system/sw/bin/i3status-rs
+    status_command /usr/bin/i3status-rs
 
     colors {
         #background #00000000

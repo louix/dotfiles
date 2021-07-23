@@ -6,7 +6,7 @@ block = "notify"
 
 [[block]]
 block = "custom"
-command = '~/.scripts/mute-status-pw.sh'
+command = '~/.scripts/mute-status.sh'
 on_click = "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
 json = true
 interval = 0.5
