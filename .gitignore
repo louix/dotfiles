@@ -40,6 +40,8 @@
 !/.config/nu/**
 !/.config/nixos/
 !/.config/nixos/**
+!/.config/starship/
+!/.config/starship/**
 !/.config/wallpaper.*
 
 # Blacklist
