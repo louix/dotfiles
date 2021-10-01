@@ -1,6 +1,6 @@
 configuration {
 //  font: "Iosevka SS14 Light 10";
-  font: "Noto Sans 9";
+  font: "Noto Sans 10";
   show-icons: true;
   display-drun: "";
 }
@@ -18,12 +18,11 @@ inputbar {
 }
 
 prompt {
-  padding: 10px;
+  padding: 10px 6px 10px 14px;
   border: 0;
 }
 
 entry {
-  backgroundcolor: #2a2e32;
   padding: 8px;
   placeholder: "Search...";
 }
@@ -36,14 +35,17 @@ listview {
 
 element {
   border: 0;
-  padding: 8px;
+  padding: 6px;
 }
 
 element selected {
-  background-color: #3daee9;
-  text-color: #2a2e32;
+  //background-color: #3daee9; // don't know why these broke
+  //text-color: #2a2e32;
+  border-color: #3daee9;
+  border: 2px;
 }
 
 element-icon {
-    size: 3ch;
+  size: 3ch;
+  padding: 0 8px 0 2px;
 }
