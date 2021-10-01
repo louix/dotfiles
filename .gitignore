@@ -38,8 +38,8 @@
 !/.config/rofi-pass/**
 !/.config/nu/
 !/.config/nu/**
-!/.config/nixos/
-!/.config/nixos/**
+!/.config/nix/
+!/.config/nix/**
 !/.config/starship/
 !/.config/starship/**
 !/.config/wallpaper.*
