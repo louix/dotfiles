@@ -27,7 +27,7 @@ args = ["intelephense"]
 
 [language.tsx]
 filetypes = ["typescript"]
-roots = ["package.json"]
+roots = [".git", "package.json"]
 command = "npx"
 args = ["typescript-language-server", "--stdio"]
 
