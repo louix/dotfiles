@@ -22,7 +22,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # Increase key repeat rate
 exec --no-startup-id xset r rate 250 50
 # Compositor with rounded corners
-exec --no-startup-id picom
+exec --no-startup-id MODE=grayscale ~/.scripts/picom.sh
 # Set up monitors
 exec --no-startup-id ~/.scripts/xlayoutdisplay
 # Set wallpaper
