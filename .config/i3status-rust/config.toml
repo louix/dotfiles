@@ -54,6 +54,8 @@ format = "{utilization} {barchart}"
 block = "battery"
 interval = 10
 format = "{percentage} {time}"
+allow_missing = true
+hide_missing = true
 
 [[block]]
 block = "time"
