@@ -2,10 +2,12 @@
 # ~/.bashrc
 #
 
-export EDITOR="kak"
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
+export EDITOR="kak"
+GPG_TTY=$(tty)
+export GPG_TTY
 
 parse_git_branch() {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -68,6 +70,8 @@ alias tab='xinput map-to-output "Tablet Monitor Pen Pen (0)" HDMI-0'
 alias aa='~/Android/Sdk/emulator/emulator -avd Pixel_3a_API_30_x86'
 alias vnc='x0vncserver -display :0 -passwordfile ~/.vnc/passwd'
 alias stress='s-tui'
+alias kak='tmux new "kak"'
+alias pnpx='pnpm exec'
 #alias sudo="doas"
 
 # passwordstore
@@ -88,6 +92,14 @@ shopt -s histappend
 
 export HISTSIZE=10000
 export HISTCONTROL=ignorespace
+
+# Takle stuff
+FZF_THEME="--color='bg+:-1,fg+:-1,fg:#AEACAA,fg+:#FFFBF6'"
+
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --extended ${FZF_THEME}"
+export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow --exclude .git"
+export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+export FZF_ALT_C_COMMAND="fd --type directory --hidden"
 
 # Local
 export PATH="$HOME/.local/bin:$PATH"
