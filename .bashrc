@@ -101,6 +101,9 @@ export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow --exclude .git"
 export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 export FZF_ALT_C_COMMAND="fd --type directory --hidden"
 
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
+
 # Local
 export PATH="$HOME/.local/bin:$PATH"
 
