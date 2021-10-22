@@ -1,6 +1,6 @@
 configuration {
 //  font: "Iosevka SS14 Light 10";
-  font: "Noto Sans 10";
+  font: "Noto Sans 12";
   show-icons: true;
   display-drun: "";
 }
