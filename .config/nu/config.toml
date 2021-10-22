@@ -19,3 +19,6 @@ table_mode = "rounded"
 max_history_size = 1_000_000
 history_duplicates = "ignoreconsecutive"
 history_ignore_space = true
+
+[env]
+EDITOR = "kak"
