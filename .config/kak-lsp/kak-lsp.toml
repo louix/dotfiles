@@ -9,13 +9,13 @@ roots = ["composer.json"]
 command = "npx"
 args = ["intelephense"]
 
-#[language.deno]
+#[language.typescript]
 #filetypes = ["typescript", "javascript"]
 #roots = [".git"]
 #command = "deno"
-#args = ["lsp", "--unstable"]
+#args = ["lsp"]
 
-#[language.deno.initialization_options]
+#[language.typescript.settings.initialization_options]
 #enable = true
 #lint = true
 
