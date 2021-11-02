@@ -25,11 +25,11 @@ command = "clangd"
 #enable = true
 #lint = true
 
-#[language.typescript]
-#filetypes = ["typescript"]
-#roots = ["package.json"]
-#command = "typescript-language-server"
-#args = ["--stdio"]
+[language.typescript]
+filetypes = ["typescript"]
+roots = [".git", "package.json"]
+command = "npx"
+args = ["typescript-language-server", "--stdio"]
 
 [language.tsx]
 filetypes = ["typescript"]
