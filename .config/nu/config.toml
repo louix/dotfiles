@@ -7,9 +7,7 @@ startup = [
   "gpg-connect-agent /bye",
   "[[name, value]; ['GPG_TTY', (tty)] ['SSH_AUTH_SOCK', '/run/user/1000/gnupg/S.gpg-agent.ssh']] | load-env",
   "alias gg = lazygit",
-  #"mkdir ~/.cache/starship/",
-  #"starship init nu | save ~/.cache/starship/init.nu",
-  #"source ~/.cache/starship/init.nu"
+  "alias yay = paru",
   "zoxide init nushell --hook prompt | save ~/.zoxide.nu", "source ~/.zoxide.nu",
   "def we [] { z ~/dev/gridshare-edge/; nix-shell --run nu }",
   "def je [] { z (fd . '/home/louix/dev/gridshare-edge' --type directory | fzf | str trim -c (char newline) | path expand) }",

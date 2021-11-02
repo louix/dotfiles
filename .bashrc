@@ -73,6 +73,7 @@ alias stress='s-tui'
 alias kak='tmux new "kak"'
 alias pnpx='pnpm exec'
 #alias sudo="doas"
+alias yay="paru"
 
 # passwordstore
 p () {
