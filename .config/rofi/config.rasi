@@ -1,5 +1,5 @@
 configuration {
-  theme: "slate";
+  theme: "black";
   location: 2;
   show-icons: true;
   font: "DejaVu Sans Mono 10";
