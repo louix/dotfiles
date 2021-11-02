@@ -10,6 +10,13 @@
 !/.gitignore
 !/.gitconfig
 !/.configuration.nix
+!/.kde4/
+!/.kde4/share/
+!/.kde4/share/config
+!/.kde4/share/config/kdeglobals
+!/.kde4/share/apps/
+!/.kde4/share/apps/color-schemes
+!/.kde4/share/apps/color-schemes/Dark.colors
 
 !/.config/
 !/.config/dunst/
@@ -42,6 +49,10 @@
 !/.config/nix/**
 !/.config/starship/
 !/.config/starship/**
+!/.config/gtk-3.0/
+!/.config/gtk-3.0/settings.ini
+!/.config/gtk-4.0/
+!/.config/gtk-4.0/settings.ini
 !/.config/wallpaper.*
 
 # Blacklist
