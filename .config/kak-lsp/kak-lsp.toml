@@ -9,6 +9,12 @@ roots = ["composer.json"]
 command = "npx"
 args = ["intelephense"]
 
+[language.c_cpp]
+filetypes = ["c", "cpp"]
+roots = ["compile_commands.json", ".ccls", ".git"]
+command = "clangd"
+#args = ["-log=verbose"]
+
 #[language.typescript]
 #filetypes = ["typescript", "javascript"]
 #roots = [".git"]
