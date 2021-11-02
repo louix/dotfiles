@@ -1,0 +1,49 @@
+configuration {
+  font: "Iosevka 12";
+ // font: "Noto Sans 12";
+  show-icons: true;
+  display-drun: "";
+}
+
+* {
+  background-color: #000;
+  border-color: #ddd;
+  text-color: #ddd;
+  spacing: 0;
+  width: 512px;
+}
+
+inputbar {
+  children: [prompt,entry];
+}
+
+prompt {
+  padding: 10px 6px 10px 14px;
+  border: 0;
+}
+
+entry {
+  padding: 8px;
+  placeholder: "Search...";
+}
+
+listview {
+  cycle: false;
+  margin: 0 0 -1px 0;
+  scrollbar: false;
+}
+
+element {
+  border: 0;
+  padding: 6px;
+}
+
+element selected {
+  border-color: #ddd;
+  border: 2px;
+}
+
+element-icon {
+  size: 3ch;
+  padding: 0 8px 0 2px;
+}
