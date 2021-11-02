@@ -42,6 +42,11 @@ hook global WinSetOption filetype=(rust|python|go|javascript|typescript|tsx|deno
     set-option window tabstop 2
 }
 
+hook global WinSetOption filetype=(c|cpp) %{
+    set-option buffer formatcmd 'clang-format'
+    hook buffer -group format BufWritePre .* format
+}
+
 hook global WinSetOption filetype=terraform %{
     set-option buffer formatcmd 'terraform fmt -'
     hook buffer -group format BufWritePre .* format
