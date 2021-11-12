@@ -5,7 +5,7 @@ plug "danr/kakoune-easymotion"
 plug "occivink/kakoune-gdb"
 plug "occivink/kakoune-sudo-write"
 plug "insipx/kak-crosshairs"
-plug "Bodhizafa/kak-rainbow"
+#plug "Bodhizafa/kak-rainbow" # Kind of confusing...
 plug "andreyorst/fzf.kak" config %{
     map -docstring 'fzf mode' global normal '<c-p>' ': fzf-mode<ret>'
 } defer 'fzf-file' %{
@@ -24,17 +24,17 @@ plug "eraserhd/parinfer-rust" do %{
 plug "andreyorst/powerline.kak" config %{
     powerline-start
 }
-eval %sh{kak-lsp --kakoune -s $kak_session}
+#eval %sh{kak-lsp --kakoune -s $kak_session}
 #set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log" # kak-lsp debug
 hook global WinSetOption filetype=(rust|python|go|javascript|typescript|tsx|deno|vue|c|cpp|elixir) %{
     lsp-enable-window
     lsp-auto-hover-enable
-    rainbow-enable-window
-    add-highlighter global/ number-lines
+    #rainbow-enable-window
+    enable-auto-pairs
+    #add-highlighter global/ number-lines
     set-option window ui_options ncurses_assistant=off
     map window user e -docstring 'next error (lsp)' :lsp-find-error<ret>
     map window user , -docstring 'code-actions' :lsp-code-actions<ret>
-    map window user . -docstring 'save-all-buffers' :write-all<ret>
     map window user r -docstring 'refactor' :lsp-rename-prompt<ret>
     map window user L -docstring 'lint' :lint<ret>
     map window user F -docstring 'format' :format<ret>
@@ -43,8 +43,15 @@ hook global WinSetOption filetype=(rust|python|go|javascript|typescript|tsx|deno
 }
 
 hook global WinSetOption filetype=(c|cpp) %{
-    set-option buffer formatcmd 'clang-format'
+    set-option buffer formatcmd 'clang-format --style=Google'
+    map window user b -docstring 'gdb-set-breakpoint' :gdb-set-breakpoint<ret>
+    map window user B -docstring 'gdb-clear-breakpoint' :gdb-clear-breakpoint<ret>
+    map window user c -docstring 'gdb-continue-or-run' :gdb-continue-or-run<ret>
+    map window user n -docstring 'gdb-session-new' ':gdb-session-new --command ./c.gdb<ret>'
+    map window user N -docstring 'gdb-session-stop' :gdb-session-stop<ret>
+    map window user P -docstring 'gdb-print' :gdb-print<ret>
     hook buffer -group format BufWritePre .* format
+    hook buffer -group build BufWritePost .*.(cpp|h) :nop %sh{ ./build.sh }
 }
 
 hook global WinSetOption filetype=terraform %{
@@ -64,3 +71,5 @@ map global user < -docstring 'previous buffer' :buffer-previous<ret>
 map global user > -docstring 'next buffer' :buffer-next<ret>
 map global user d -docstring 'delete buffer' :delete-buffer<ret>
 map global user D -docstring 'force delete buffer' :delete-buffer!<ret>
+map global user . -docstring 'save-all-buffers' :write-all<ret>
+map global user / -docstring 'comment-line' :comment-line<ret>
