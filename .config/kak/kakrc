@@ -53,7 +53,7 @@ hook global WinSetOption filetype=(c|cpp) %{
     map window gdb p -docstring 'gdb-print' ': gdb-print<ret>'
     map window user g -docstring 'gdb' ': enter-user-mode gdb<ret>'
     hook buffer -group format BufWritePre .* format
-    hook buffer -group build BufWritePost .*.(cpp|h) nop %sh{ ./build.sh }
+    hook buffer -group build BufWritePost .*.(cpp|h) 'nop %sh{ ./build.sh }'
 }
 
 hook global WinSetOption filetype=terraform %{
