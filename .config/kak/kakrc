@@ -24,36 +24,62 @@ plug "eraserhd/parinfer-rust" do %{
 plug "andreyorst/powerline.kak" config %{
     powerline-start
 }
-#eval %sh{kak-lsp --kakoune -s $kak_session}
+eval %sh{kak-lsp --kakoune -s $kak_session}
 #set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log" # kak-lsp debug
-hook global WinSetOption filetype=(rust|python|go|javascript|typescript|tsx|deno|vue|c|cpp|elixir) %{
+
+# All files
+hook global WinSetOption filetype(.*) %{
+    map global user p -docstring 'paste from clipboard' '<a-!>xsel --output --clipboard<ret>'
+    map global user w -docstring 'easy-motion (word)' ': easy-motion-w<ret>'
+    map global user W -docstring 'easy-motion (WORD)' ': easy-motion-W<ret>'
+    map global user l -docstring 'easy-motion (line)' ': easy-motion-line<ret>'
+    map global user < -docstring 'previous buffer' ': buffer-previous<ret>'
+    map global user > -docstring 'next buffer' ': buffer-next<ret>'
+    map global user d -docstring 'delete buffer' ': delete-buffer<ret>'
+    map global user D -docstring 'force delete buffer' ': delete-buffer!<ret>'
+    map global user . -docstring 'save-all-buffers' ': write-all<ret>'
+    map global user / -docstring 'comment-line' ': comment-line<ret>'
+}
+
+hook global NormalKey y %{ nop %sh{
+      printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
+}}
+
+# LSP enabled languages
+hook global WinSetOption filetype=(rust|javascript|typescript|tsx|deno|vue|c|cpp) %{
     lsp-enable-window
     lsp-auto-hover-enable
     #rainbow-enable-window
     enable-auto-pairs
     #add-highlighter global/ number-lines
     set-option window ui_options ncurses_assistant=off
-    map window user e -docstring 'next error (lsp)' : lsp-find-error<ret>
-    map window user , -docstring 'code-actions' : lsp-code-actions<ret>
-    map window user r -docstring 'refactor' : lsp-rename-prompt<ret>
-    map window user L -docstring 'lint' : lint<ret>
-    map window user F -docstring 'format' : format<ret>
+    map window user e -docstring 'next error (lsp)' ': lsp-find-error<ret>'
+    map window user , -docstring 'code-actions' ': lsp-code-actions<ret>'
+    map window user r -docstring 'refactor' ': lsp-rename-prompt<ret>'
+    map window user L -docstring 'lint' ': lint<ret>'
+    map window user F -docstring 'format' ': format<ret>'
     set-option window indentwidth 2
     set-option window tabstop 2
 }
 
+# Language specific
 hook global WinSetOption filetype=(c|cpp) %{
-    declare-user-mode gdb
     set-option buffer formatcmd 'clang-format --style=Google'
-    map window gdb b -docstring 'gdb-set-breakpoint' ': gdb-set-breakpoint<ret>'
-    map window gdb B -docstring 'gdb-clear-breakpoint' ': gdb-clear-breakpoint<ret>'
-    map window gdb c -docstring 'gdb-continue-or-run' ': gdb-continue-or-run<ret>'
-    map window gdb n -docstring 'gdb-session-new' ':gdb-session-new --command ./c.gdb<ret>'
-    map window gdb N -docstring 'gdb-session-stop' ': gdb-session-stop<ret>'
-    map window gdb p -docstring 'gdb-print' ': gdb-print<ret>'
-    map window user g -docstring 'gdb' ': enter-user-mode gdb<ret>'
     hook buffer -group format BufWritePre .* format
-    hook buffer -group build BufWritePost .*.(cpp|h) 'nop %sh{ ./build.sh }'
+    hook buffer -group build BufWritePost .*.(c|cpp) 'nop %sh{ ./build.sh }'
+    declare-user-mode gdb
+    map global gdb b -docstring 'gdb-set-breakpoint' ': gdb-set-breakpoint<ret>'
+    map global gdb B -docstring 'gdb-clear-breakpoint' ': gdb-clear-breakpoint<ret>'
+    map global gdb c -docstring 'gdb-continue-or-run' ': gdb-continue-or-run<ret>'
+    map global gdb n -docstring 'gdb-session-new' ':gdb-session-new --command ./c.gdb<ret>'
+    map global gdb N -docstring 'gdb-session-stop' ': gdb-session-stop<ret>'
+    map global gdb p -docstring 'gdb-print' ': gdb-print<ret>'
+    map global user g -docstring 'gdb' ': enter-user-mode gdb<ret>'
+}
+
+hook global WinSetOption filetype=rust %{
+    set-option buffer formatcmd 'rustfmt'
+    hook buffer -group format BufWritePre .* format
 }
 
 hook global WinSetOption filetype=terraform %{
@@ -61,17 +87,3 @@ hook global WinSetOption filetype=terraform %{
     hook buffer -group format BufWritePre .* format
 }
 
-hook global NormalKey y %{ nop %sh{
-      printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
-}}
-
-map global user p -docstring 'paste from clipboard' '<a-!>xsel --output --clipboard<ret>'
-map global user w -docstring 'easy-motion (word)' ': easy-motion-w<ret>'
-map global user W -docstring 'easy-motion (WORD)' ': easy-motion-W<ret>'
-map global user l -docstring 'easy-motion (line)' ': easy-motion-line<ret>'
-map global user < -docstring 'previous buffer' ': buffer-previous<ret>'
-map global user > -docstring 'next buffer' ': buffer-next<ret>'
-map global user d -docstring 'delete buffer' ': delete-buffer<ret>'
-map global user D -docstring 'force delete buffer' ': delete-buffer!<ret>'
-map global user . -docstring 'save-all-buffers' ': write-all<ret>'
-map global user / -docstring 'comment-line' ': comment-line<ret>'
