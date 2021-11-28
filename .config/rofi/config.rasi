@@ -1,13 +1,14 @@
 configuration {
-  theme: "black";
-  location: 2;
+  font: "Iosevka 12";
+  display-drun: "";
+  matching: "fuzzy";
   show-icons: true;
-  font: "DejaVu Sans Mono 10";
   hide-scrollbar: true;
+  separator-style: none;
   lines: 6;
   columns: 1;
   line-margin: 0;
-  separator-style: none;
+  location: 2;
   yoffset: 50;
-  matching: "fuzzy";
 }
+@theme "black"
