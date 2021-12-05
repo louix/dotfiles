@@ -39,10 +39,13 @@ hook global WinSetOption filetype(.*) %{
     map global user D -docstring 'force delete buffer' ': delete-buffer!<ret>'
     map global user . -docstring 'save-all-buffers' ': write-all<ret>'
     map global user / -docstring 'comment-line' ': comment-line<ret>'
+    map global user f -docstring 'copy file path' 'nop %sh{ xclip -se c $kak_buffile }'
+    git show-diff
+    hook buffer -always BufWritePost .* 'git update-diff'
 }
 
 hook global NormalKey y %{ nop %sh{
-      printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
+    printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
 }}
 
 # LSP enabled languages
