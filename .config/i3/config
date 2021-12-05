@@ -28,13 +28,15 @@ exec --no-startup-id ~/.scripts/xlayoutdisplay
 # Set wallpaper
 exec --no-startup-id ~/.scripts/fehbg
 # Notification Daemon
-exec --no-startup-id dunst
+#exec --no-startup-id dunst
 # Clipboard manager
 exec --no-startup-id CM_LAUNCHER=rofi CM_SELECTIONS=clipboard CM_DEBUG=1 clipmenud
 # Mute mic
 exec --no-startup-id pactl set-sink-mute @DEFAULT_SOURCE true
 # Sort out oath keys
 exec --no-startup-id ykman oath list
+# Hide mouse whilst typing
+exec --no-startup-id xbanish
 
 # Keyboard layout
 # exec ~/.scripts/colemak
@@ -48,6 +50,7 @@ exec --no-startup-id ykman oath list
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
+for_window [class="handmade"] floating enable
 for_window [class="helvum"] floating enable
 for_window [class="yakuake"] floating enable
 for_window [class="systemsettings"] floating enable
@@ -127,7 +130,7 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 #bindsym $mod+Shift+a exec --no-startup-id rofi -show window -modi window
 bindsym $mod+Shift+a exec --no-startup-id dunstctl history-pop
 bindsym $mod+o exec --no-startup-id ./.scripts/ykoath
-bindsym $mod+Shift+c exec --no-startup-id ./.scripts/colour-picker.sh | xclip -se c
+bindsym $mod+c exec --no-startup-id ./.scripts/colour-picker.sh
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -135,10 +138,10 @@ bindsym $mod+Shift+c exec --no-startup-id ./.scripts/colour-picker.sh | xclip -s
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+#bindsym $mod+h focus left
+#bindsym $mod+j focus down
+#bindsym $mod+k focus up
+#bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
