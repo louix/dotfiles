@@ -24,6 +24,9 @@ plug "eraserhd/parinfer-rust" do %{
 plug "andreyorst/powerline.kak" config %{
     powerline-start
 }
+plug "lePerdu/kakboard" %{
+    hook global WinCreate .* %{ kakboard-enable }
+}
 eval %sh{kak-lsp --kakoune -s $kak_session}
 #set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log" # kak-lsp debug
 
@@ -40,13 +43,11 @@ hook global WinSetOption filetype(.*) %{
     map global user . -docstring 'save-all-buffers' ': write-all<ret>'
     map global user / -docstring 'comment-line' ': comment-line<ret>'
     map global user f -docstring 'copy file path' 'nop %sh{ xclip -se c $kak_buffile }'
-    git show-diff
-    hook buffer -always BufWritePost .* 'git update-diff'
 }
 
-hook global NormalKey y %{ nop %sh{
-    printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
-}}
+# hook global NormalKey y %{ nop %sh{
+#     printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
+# }}
 
 # LSP enabled languages
 hook global WinSetOption filetype=(rust|javascript|typescript|tsx|deno|vue|c|cpp) %{
@@ -63,6 +64,8 @@ hook global WinSetOption filetype=(rust|javascript|typescript|tsx|deno|vue|c|cpp
     map window user F -docstring 'format' ': format<ret>'
     set-option window indentwidth 2
     set-option window tabstop 2
+    git show-diff
+    hook buffer -always BufWritePost .* 'git update-diff'
 }
 
 # Language specific
