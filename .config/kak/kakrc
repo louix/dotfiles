@@ -69,24 +69,30 @@ hook global WinSetOption filetype=(rust|javascript|typescript|tsx|deno|vue|c|cpp
 }
 
 # Language specific
-hook global WinSetOption filetype=(c|cpp) %{
-    set-option buffer formatcmd 'clang-format --style=Google'
-    hook buffer -group format BufWritePre .* format
-    hook buffer -group build BufWritePost .*.(c|cpp) 'nop %sh{ ./build.sh }'
+hook global WinSetOption filetype=(c|cpp|rust) %{
     declare-user-mode gdb
     map global gdb b -docstring 'gdb-set-breakpoint' ': gdb-set-breakpoint<ret>'
     map global gdb B -docstring 'gdb-clear-breakpoint' ': gdb-clear-breakpoint<ret>'
     map global gdb c -docstring 'gdb-continue-or-run' ': gdb-continue-or-run<ret>'
-    map global gdb n -docstring 'gdb-session-new' ':gdb-session-new --command ./c.gdb<ret>'
+    map global gdb n -docstring 'gdb-session-new' ':gdb-session-new --eval-command "file $GDB_FILE" --eval-command "break $GDB_ENTRY_FUNCTION" --eval-command "run" <ret>'
     map global gdb N -docstring 'gdb-session-stop' ': gdb-session-stop<ret>'
     map global gdb p -docstring 'gdb-print' ': gdb-print<ret>'
     map global user g -docstring 'gdb' ': enter-user-mode gdb<ret>'
 }
 
+hook global WinSetOption filetype=(c|cpp) %{
+    set-option buffer formatcmd 'clang-format --style=Google'
+    hook buffer -group format BufWritePre .* format
+    hook buffer -group build BufWritePost .*.(c|cpp) 'nop %sh{ ./build.sh }'
+}
+
 hook global WinSetOption filetype=rust %{
+    set-option buffer gdb_program 'rust-gdb'
     set-option buffer formatcmd 'rustfmt'
     hook buffer -group format BufWritePre .* format
+    hook buffer -group build BufWritePost .*.(rs) 'nop %sh{ cargo build }'
 }
+
 
 hook global WinSetOption filetype=terraform %{
     set-option buffer formatcmd 'terraform fmt -'
