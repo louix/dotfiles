@@ -4,3 +4,6 @@ $include /etc/inputrc
 "\e[A":history-search-backward
 ## arrow down
 "\e[B":history-search-forward
+
+"\C-h": backward-kill-word
+"\e[3;5~": kill-word
