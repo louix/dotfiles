@@ -61,6 +61,8 @@
 /.config/emacs/elpa/
 /.config/nixos/**.ovpn
 /.config/nu/nu-env.toml
+/.scripts/secure/
+/.scripts/secure/**
 
 **/node_modules/
 **/.cache/
