@@ -91,7 +91,7 @@ je() {
 shopt -s expand_aliases
 shopt -s histappend
 
-export HISTSIZE=10000
+export HISTSIZE=100000
 export HISTCONTROL=ignorespace
 
 # Takle stuff
