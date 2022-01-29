@@ -1,4 +1,3 @@
-skip_welcome_message = true
 prompt = "starship prompt"
 startup = [
   #"def new-agent [] { ssh-agent -s | lines | split column ';' | where Column2 != '' | get Column1 | each { split column '=' name value }}",
@@ -8,18 +7,21 @@ startup = [
   "[[name, value]; ['GPG_TTY', (tty)] ['SSH_AUTH_SOCK', '/run/user/1000/gnupg/S.gpg-agent.ssh']] | load-env",
   "alias gg = lazygit",
   "alias yay = paru",
-  "def we [] { cd ~/dev/gridshare-edge/; nix-shell --run nu }",
-  "def le [] { cd ~/dev/labs/; nix-shell --run nu }",
+  "def ew [] { cd ~/dev/gridshare-edge/; nix-shell --run nu }",
+  "def er [] { cd ~/dev/rust_monorepo/; nix-shell --run nu }",
+  "def el [] { cd ~/dev/labs/; nix-shell --run nu }",
   "def je [] { cd (fd . '/home/louix/dev/gridshare-edge' --type directory | fzf | str trim -c (char newline) | path expand) }",
   "def jl [] { cd (fd . '/home/louix/dev/labs' --type directory | fzf | str trim -c (char newline) | path expand) }",
-  "def jh [] { cd (fd . '/home/louix/dev/handmade' --type directory | fzf | str trim -c (char newline) | path expand) }"
+  "def jh [] { cd (fd . '/home/louix/dev/handmade' --type directory | fzf | str trim -c (char newline) | path expand) }",
+  "alias notify = notify-send --urgency normal --icon terminal --expire-time=120000 \"command complete! 🎉\""
  ]
+skip_welcome_message = true
 table_mode = "rounded"
-
-[line_editor]
-max_history_size = 1_000_000
-history_duplicates = "ignoreconsecutive"
-history_ignore_space = true
 
 [env]
 EDITOR = "kak"
+
+[line_editor]
+history_duplicates = "ignoreconsecutive"
+history_ignore_space = true
+max_history_size = 1000000
