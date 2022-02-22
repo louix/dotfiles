@@ -9,6 +9,7 @@
 !/.inputrc
 !/.gitignore
 !/.gitconfig
+!/.tmux.conf
 !/.configuration.nix
 !/.kde4/
 !/.kde4/share/
@@ -21,6 +22,8 @@
 !/.config/
 !/.config/dunst/
 !/.config/dunst/**
+!/.config/direnv/
+!/.config/direnv/**
 !/.config/emacs/
 !/.config/emacs/**
 !/.config/flameshot.ini
