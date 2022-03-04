@@ -9,6 +9,7 @@
 !/.inputrc
 !/.gitignore
 !/.gitconfig
+!/.pam_environment
 !/.tmux.conf
 !/.configuration.nix
 !/.kde4/
