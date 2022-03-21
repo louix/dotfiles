@@ -6,6 +6,7 @@
 [[ $- != *i* ]] && return
 
 export EDITOR="kak"
+export REACT_EDITOR="webstorm"
 GPG_TTY=$(tty)
 export GPG_TTY
 
@@ -25,55 +26,57 @@ fi
 #
 
 # Colors!
-PS1='\W$(parse_git_branch) \$ '
-#alias ls='ls --color=auto'
+PS1="\W$(parse_git_branch) \$ "
+#alias ls="ls --color=auto"
 #alias ls="exa"
-alias grep='grep --colour=auto'
-alias egrep='egrep --colour=auto'
-alias fgrep='fgrep --colour=auto'
-alias watch='watch --color'
+# alias ls="ls --colour=auto"
+alias grep="grep --colour=auto"
+alias egrep="egrep --colour=auto"
+alias fgrep="fgrep --colour=auto"
+alias watch="watch --color"
 
 # Aliases
 alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
+alias df="df -h"                          # human-readable sizes
+alias free="free -m"                      # show sizes in MB
+alias np="nano -w PKGBUILD"
 alias more=less
-alias ll='ls -lah'
-#alias git='hub'
-alias gif='sxiv -a'
+alias ll="ls -lah"
+#alias git="hub"
+alias gif="sxiv -a"
 alias detatch="pkill -9 -f 'docker.*attach'"
 alias nethack="ssh nethack"
 alias crawl="ssh crawl"
 alias diff="diff --color"
 alias gg="lazygit"
 alias oath="ykman oath code \$(ykman oath list | fzf) -s | xclip -se c"
-alias skey="eval \`ssh-agent -s\` && ssh-add ~/.ssh/id_rsa"
+alias skey="eval \`ssh-agent -s\` && ssh-add"
 #alias skey="ssh-add ~/.ssh/id_rsa"
 alias srm="shred -v -n 1 -z -u"
 alias grep="rg"
 alias xc="xclip -se c"
 alias q="exit"
 alias mkcam="sudo modprobe -r v4l2loopback && sudo modprobe v4l2loopback devices=2 exclusive_caps=1,1 && ls /dev/video*"
-alias vcam='function _v() { ffmpeg -i http://$1:8080/video -vf format=yuv420p -f v4l2 /dev/video0; }; _v'
-alias dcam='ffmpeg -f x11grab -framerate 30 -video_size 1920x1080 -i :0.0+0,360 -f v4l2 -vcodec rawvideo -pix_fmt rgb24 /dev/video1'
-alias passinit='pass grep ¬'
-alias xm='xlayoutdisplay && ~/.fehbg'
-alias work='feh --bg-scale ~/media/wallpapers/firewatch-wallpaper.jpg'
-alias home='feh --bg-scale ~/media/wallpapers/tiger-jungle-wallpaper.jpg'
-alias yt='youtube-dl --write-sub --embed-subs'
-alias passc='pass -c $@'
-alias j='xclip -o -se c | jq . | xclip -se c'
-alias tf='terraform'
-alias ws='webstorm-eap . &> /dev/null &'
-alias tab='xinput map-to-output "Tablet Monitor Pen Pen (0)" HDMI-0'
-alias aa='~/Android/Sdk/emulator/emulator -avd Pixel_3a_API_30_x86'
-alias vnc='x0vncserver -display :0 -passwordfile ~/.vnc/passwd'
-alias stress='s-tui'
-alias kak='tmux new "kak"'
-alias pnpx='pnpm exec'
-#alias sudo="doas"
+alias vcam="function _v() { ffmpeg -i http://$1:8080/video -vf format=yuv420p -f v4l2 /dev/video0; }; _v"
+alias dcam="ffmpeg -f x11grab -framerate 30 -video_size 1920x1080 -i :0.0+0,360 -f v4l2 -vcodec rawvideo -pix_fmt rgb24 /dev/video1"
+alias passinit="pass grep ¬"
+alias xm="xlayoutdisplay && ~/.fehbg"
+alias work="feh --bg-scale ~/media/wallpapers/firewatch-wallpaper.jpg"
+alias home="feh --bg-scale ~/media/wallpapers/tiger-jungle-wallpaper.jpg"
+alias yt="youtube-dl --write-sub --embed-subs"
+alias j="xclip -o -se c | jq . | xclip -se c"
+alias tf="terraform"
+alias ws="ionice webstorm . &> /dev/null &"
+alias wsx="ionice webstorm ."
+alias tab="xinput map-to-output 'Tablet Monitor Pen Pen (0)' HDMI-0"
+alias aa="~/Android/Sdk/emulator/emulator -avd Pixel_3a_API_30_x86"
+alias stress="s-tui"
+alias kak="unset LD_LIBRARY_PATH && tmux new 'kak'"
+alias pnpx="pnpm exec"
 alias yay="paru"
+alias ew="cd ~/dev/gridshare-edge/ && unset LD_LIBRARY_PATH"
+alias ele="cd ~/dev/lunar-edge/"
+alias el="cd ~/dev/labs/"
 
 # passwordstore
 p () {
@@ -97,7 +100,7 @@ export HISTCONTROL=ignorespace
 # Takle stuff
 FZF_THEME="--color='bg+:-1,fg+:-1,fg:#AEACAA,fg+:#FFFBF6'"
 
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --extended ${FZF_THEME}"
+export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --extended ${FZF_THEME}"
 export FZF_DEFAULT_COMMAND="fd --type file --hidden --follow --exclude .git"
 export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 export FZF_ALT_C_COMMAND="fd --type directory --hidden"
@@ -121,3 +124,4 @@ fi
 
 export STARSHIP_CONFIG=~/.config/starship/bash.toml
 eval "$(starship init bash)"
+
