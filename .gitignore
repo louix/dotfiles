@@ -40,6 +40,8 @@
 !/.config/kak/**
 !/.config/kak-lsp/
 !/.config/kak-lsp/**
+!/.config/helix/
+!/.config/helix/**
 !/.config/locale.conf
 !/.config/picom/
 !/.config/picom/**
