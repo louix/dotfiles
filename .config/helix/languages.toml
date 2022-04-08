@@ -1,0 +1,24 @@
+[[language]]
+name = "tsx"
+scope = "source.tsx"
+injection-regex = "^(tsx)$" # |typescript
+file-types = ["tsx"]
+roots = []
+# TODO: highlights-jsx, highlights-params
+language-server = { command = "/home/louix/.scripts/ts-lsp.sh", language-id = "typescriptreact"}
+# language-server = { command = "typescript-language-server", args = ["--stdio"], language-id = "typescriptreact" }
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+injection-regex = "^(ts|typescript)$"
+file-types = ["ts"]
+shebangs = []
+roots = []
+# TODO: highlights-jsx, highlights-params
+# language-server = { command = "typescript-language-server", args = ["--stdio"], language-id = "typescript"}
+language-server = { command = "/home/louix/.scripts/ts-lsp.sh", language-id = "typescript"}
+indent = { tab-width = 2, unit = "  " }
+auto-format = true

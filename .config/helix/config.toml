@@ -1,0 +1,14 @@
+theme = "monokai_pro_spectrum"
+
+[editor]
+idle-timeout = 200
+
+[editor.lsp]
+display-messages = true
+
+[keys.normal]
+x = ["move_char_right", "extend_line"]
+x = ["extend_to_line_bounds"]
+X = ["extend_line"]
+W = ["extend_next_word_end"]
+B = ["extend_prev_word_start"]
