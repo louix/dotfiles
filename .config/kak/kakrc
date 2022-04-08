@@ -43,6 +43,7 @@ hook global WinSetOption filetype(.*) %{
     map global user . -docstring 'save-all-buffers' ': write-all<ret>'
     map global user / -docstring 'comment-line' ': comment-line<ret>'
     map global user f -docstring 'copy file path' 'nop %sh{ xclip -se c $kak_buffile }'
+    map global user o -docstring 'list file symbols' ': lsp-document-symbol'
 }
 
 # hook global NormalKey y %{ nop %sh{
