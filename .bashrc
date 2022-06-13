@@ -64,14 +64,15 @@ alias xm="xlayoutdisplay && ~/.fehbg"
 alias work="feh --bg-scale ~/media/wallpapers/firewatch-wallpaper.jpg"
 alias home="feh --bg-scale ~/media/wallpapers/tiger-jungle-wallpaper.jpg"
 alias yt="youtube-dl --write-sub --embed-subs"
-alias j="xclip -o -se c | jq . | xclip -se c"
+alias json="xclip -o -se c | jq . | xclip -se c"
 alias tf="terraform"
-alias ws="ionice webstorm . &> /dev/null &"
-alias wsx="ionice webstorm ."
+alias ws="unset XDG_DATA_DIRS && ionice webstorm . &> /dev/null &"
+alias wsx="unset XDG_DATA_DIRS && ionice webstorm ."
 alias tab="xinput map-to-output 'Tablet Monitor Pen Pen (0)' HDMI-0"
 alias aa="~/Android/Sdk/emulator/emulator -avd Pixel_3a_API_30_x86"
 alias stress="s-tui"
 alias kak="unset LD_LIBRARY_PATH && tmux new 'kak'"
+alias hx="helix"
 alias pnpx="pnpm exec"
 alias yay="paru"
 alias ew="cd ~/dev/gridshare-edge/ && unset LD_LIBRARY_PATH"
@@ -86,10 +87,14 @@ p () {
     clipctl enable
 }
 
-je() {
-  cd ~/dev/gridshare-edge
-  cd $(fd . --type directory | fzf)
+j() {
+    CURRENT_DIR=$(git rev-parse --show-toplevel)
+    DIR=$(fd . --type directory "$CURRENT_DIR" | fzf)
+    if [ -n "$DIR" ]; then
+        cd "$DIR"
+    fi
 }
+alias je="cd ~/dev/gridshare-edge/ && unset LD_LIBRARY_PATH && j"
 
 shopt -s expand_aliases
 shopt -s histappend
@@ -110,6 +115,7 @@ source /usr/share/fzf/completion.bash
 
 # Local
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 eval "$(direnv hook bash)"
 
