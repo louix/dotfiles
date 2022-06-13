@@ -49,8 +49,8 @@
 !/.config/rofi/**
 !/.config/rofi-pass/
 !/.config/rofi-pass/**
-!/.config/nu/
-!/.config/nu/**
+!/.config/nushell/
+!/.config/nushell/**
 !/.config/nix/
 !/.config/nix/**
 !/.config/starship/
