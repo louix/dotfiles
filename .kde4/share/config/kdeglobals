@@ -1,11 +1,11 @@
 [ColorEffects:Disabled]
 Color=112,111,110
-ColorAmount=1
-ColorEffect=1
-ContrastAmount=0.6000000000000001
+ColorAmount=0.35000000000000003
+ColorEffect=2
+ContrastAmount=0.7000000000000001
 ContrastEffect=1
-IntensityAmount=-0.8500000000000001
-IntensityEffect=2
+IntensityAmount=0.05
+IntensityEffect=0
 
 [ColorEffects:Inactive]
 ChangeSelectionColor=true
@@ -33,32 +33,32 @@ ForegroundPositive=135,194,62
 ForegroundVisited=132,0,189
 
 [Colors:Complementary]
-BackgroundAlternate=30,87,116
-BackgroundNormal=42,46,50
-DecorationFocus=61,174,233
-DecorationHover=61,174,233
-ForegroundActive=61,174,233
-ForegroundInactive=161,169,177
-ForegroundLink=29,153,243
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=252,252,252
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
+BackgroundAlternate=143,252,0
+BackgroundNormal=143,252,0
+DecorationFocus=143,252,0
+DecorationHover=143,252,0
+ForegroundActive=0,13,255
+ForegroundInactive=0,13,255
+ForegroundLink=0,13,255
+ForegroundNegative=0,13,255
+ForegroundNeutral=0,13,255
+ForegroundNormal=0,13,255
+ForegroundPositive=0,13,255
+ForegroundVisited=0,13,255
 
 [Colors:Header]
-BackgroundAlternate=42,46,50
-BackgroundNormal=49,54,59
-DecorationFocus=61,174,233
-DecorationHover=61,174,233
-ForegroundActive=61,174,233
-ForegroundInactive=161,169,177
-ForegroundLink=29,153,243
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=252,252,252
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
+BackgroundAlternate=255,0,0
+BackgroundNormal=255,0,0
+DecorationFocus=255,0,0
+DecorationHover=255,0,0
+ForegroundActive=143,252,0
+ForegroundInactive=143,252,0
+ForegroundLink=143,252,0
+ForegroundNegative=143,252,0
+ForegroundNeutral=143,252,0
+ForegroundNormal=143,252,0
+ForegroundPositive=143,252,0
+ForegroundVisited=143,252,0
 
 [Colors:Header][Inactive]
 BackgroundAlternate=49,54,59
@@ -103,7 +103,7 @@ ForegroundPositive=135,194,62
 ForegroundVisited=132,0,189
 
 [Colors:View]
-BackgroundAlternate=23,22,22
+BackgroundAlternate=0,0,0
 BackgroundNormal=0,0,0
 DecorationFocus=122,122,122
 DecorationHover=140,140,140
