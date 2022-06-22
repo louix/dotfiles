@@ -112,7 +112,6 @@ j() {
         cd "$DIR"
     fi
 }
-alias je="cd ~/dev/gridshare-edge/ && unset LD_LIBRARY_PATH && j"
 
 shopt -s expand_aliases
 shopt -s histappend
