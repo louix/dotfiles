@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-export EDITOR="kak"
+export EDITOR="helix"
 export REACT_EDITOR="webstorm"
 GPG_TTY=$(tty)
 export GPG_TTY
