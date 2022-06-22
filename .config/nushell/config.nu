@@ -394,6 +394,16 @@ let-env config = {
       mode: [emacs, vi_normal, vi_insert]
       event: { send: menu name: vars_menu }
     }
+    {
+      name: change_dir_fzf
+      modifier: control
+      keycode: char_j
+      mode: [emacs]
+      event: {
+        send: executehostcommand,
+        cmd: "j"
+      }
+    }
     # {
     #   name: commands_with_description
     #   modifier: control
@@ -406,5 +416,5 @@ let-env config = {
 
 alias hx = helix
 alias notify = notify-send --urgency normal --icon terminal --expire-time=120000 "command complete! 🎉"
-# don't know why this doesn't work
-# def j [] { cd (fd . (git rev-parse --show-toplevel | str trim -c (char newline)) --type directory | fzf | str trim -c (char newline) | path expand) }
+alias j = cd (fd . --type directory (git rev-parse --show-toplevel | str trim) | fzf)
+alias gg = lazygit
