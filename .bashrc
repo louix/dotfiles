@@ -79,6 +79,24 @@ alias ew="cd ~/dev/gridshare-edge/ && unset LD_LIBRARY_PATH"
 alias ele="cd ~/dev/lunar-edge/"
 alias el="cd ~/dev/labs/"
 
+
+adbc () {
+    HOST=$1
+    if [ ! -n "$HOST" ]; then
+        echo "Please provide the host IP address, e.g: adbc 1.1.1.1"
+        return 1
+    fi
+    
+    PORT=$(nmap $HOST -p 37000-44000 | awk "/\/tcp open/" | cut -d/ -f1)
+    if [ -n "$PORT" ]; then
+        echo "Connecting to $HOST:$PORT..."
+        adb connect $HOST:$PORT
+    else
+        echo "Unable to find port for $HOST"
+        return 1
+    fi
+}
+
 # passwordstore
 p () {
     gpg --card-status > /dev/null # Bug with gnpg 2.2.24
