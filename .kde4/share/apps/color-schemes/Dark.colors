@@ -1,11 +1,11 @@
 [ColorEffects:Disabled]
 Color=112,111,110
-ColorAmount=1
-ColorEffect=1
-ContrastAmount=0.6000000000000001
+ColorAmount=0.35000000000000003
+ColorEffect=2
+ContrastAmount=0.7000000000000001
 ContrastEffect=1
-IntensityAmount=-0.8500000000000001
-IntensityEffect=2
+IntensityAmount=0.05
+IntensityEffect=0
 
 [ColorEffects:Inactive]
 ChangeSelectionColor=true
@@ -61,7 +61,7 @@ ForegroundPositive=135,194,62
 ForegroundVisited=132,0,189
 
 [Colors:View]
-BackgroundAlternate=23,22,22
+BackgroundAlternate=0,0,0
 BackgroundNormal=0,0,0
 DecorationFocus=122,122,122
 DecorationHover=140,140,140
