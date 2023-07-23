@@ -23,6 +23,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id xset r rate 250 50
 # Compositor with rounded corners
 exec --no-startup-id MODE=grayscale ~/.scripts/picom.sh
+# Overview daemon
+exec --no-startup-id i3expo-daemon
 # Set up monitors
 exec --no-startup-id ~/.scripts/xlayoutdisplay
 # Set wallpaper
@@ -63,11 +65,11 @@ for_window [class="Kmix"] floating enable; border none
 for_window [class="Klipper"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable; border none
 for_window [class="plasma.emojier"] floating enable
-for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
 no_focus [class="plasmashell" window_type="notification"]
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
 for_window [class="Slack"] move --no-auto-back-and-forth container to workspace $ws5
+for_window [floating] border pixel 2
 
 # Gaps
 # smart_gaps on
@@ -82,17 +84,25 @@ focus_follows_mouse no
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# use kde niceness
+bindsym XF86AudioRaiseVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"
+bindsym XF86AudioLowerVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"
+bindsym XF86AudioMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mute"
+bindsym XF86AudioMicMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mic_mute"
 #bindsym $mod+Escape exec --no-startup-id pactl set-source-volume @DEFAULT_SOURCE@ 50000 && pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym $mod+Escape exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 #bindsym --release grave exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ true
 
 # Kill all heavy processes
 bindsym Ctrl+Mod1+Delete exec --no-startup-id pkill npm && pkill node && pkill firefox
+
+# Overview
+bindsym $mod+Tab exec i3expo -s
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -104,11 +114,7 @@ bindsym $mod+Return exec konsole
 bindsym $mod+Shift+q kill
 
 # screenshot
-bindsym Print exec maim | xclip -selection clipboard -t image/png && maim ~/media/captures/$(date +%s).png
-
-# snip
-#bindsym Shift+Print exec maim -s | xclip -selection clipboard -t image/png
-bindsym Shift+Print exec flameshot gui
+bindsym Print exec flameshot gui
 
 # rec
 bindsym $mod+Print exec --no-startup-id ~/.scripts/byzanz-record-region 5
@@ -230,7 +236,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
+# bindsym $mod+Shift+e exec --no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1 # kde4/qt4/qt4
+bindsym $mod+Shift+e exec --no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
