@@ -69,7 +69,6 @@ alias tf="terraform"
 alias ws="unset XDG_DATA_DIRS && ionice webstorm . &> /dev/null &"
 alias wsx="unset XDG_DATA_DIRS && pkill java -9; ionice webstorm ."
 alias tab="xinput map-to-output 'Tablet Monitor Pen Pen (0)' HDMI-0"
-alias aa="~/Android/Sdk/emulator/emulator -avd Pixel_3a_API_30_x86"
 alias stress="s-tui"
 alias kak="unset LD_LIBRARY_PATH && tmux new 'kak'"
 alias hx="helix"
@@ -110,6 +109,14 @@ j() {
     DIR=$(fd . --type directory "$CURRENT_DIR" | fzf)
     if [ -n "$DIR" ]; then
         cd "$DIR"
+    fi
+}
+
+aa() {
+    EMULATOR="/home/louix/Android/Sdk/emulator/emulator"
+    DEVICE=$("$EMULATOR" -list-avds | fzf)
+    if [ -n "$DEVICE" ]; then
+        "$EMULATOR" -avd "$DEVICE"
     fi
 }
 
