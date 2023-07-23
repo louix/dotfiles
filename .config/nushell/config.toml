@@ -1,0 +1,29 @@
+prompt = "starship prompt"
+path = ["/home/louix/.npm-packages/bin/"]
+startup = [
+  #"def new-agent [] { ssh-agent -s | lines | split column ';' | where Column2 != '' | get Column1 | each { split column '=' name value }}",
+  #"def ssh-agent [] { let count = (ps | where name == 'ssh-agent' | length); if $count == 0 { new-agent } { }}",
+  #"ssh-agent | load-env",
+  "gpg-connect-agent /bye",
+  "[[name, value]; ['GPG_TTY', (tty)] ['SSH_AUTH_SOCK', '/run/user/1000/gnupg/S.gpg-agent.ssh']] | load-env",
+  "alias gg = lazygit",
+  "alias yay = paru",
+  "def ew [] { cd ~/dev/gridshare-edge/; nix-shell --run nu }",
+  "def ele [] { cd ~/dev/lunar-edge/; nix-shell --run nu }",
+  "def el [] { cd ~/dev/labs/; nix-shell --run nu }",
+  "def je [] { cd (fd . '/home/louix/dev/gridshare-edge' --type directory | fzf | str trim -c (char newline) | path expand) }",
+  "def jl [] { cd (fd . '/home/louix/dev/labs' --type directory | fzf | str trim -c (char newline) | path expand) }",
+  "def jh [] { cd (fd . '/home/louix/dev/handmade' --type directory | fzf | str trim -c (char newline) | path expand) }",
+  "alias notify = notify-send --urgency normal --icon terminal --expire-time=120000 \"command complete! 🎉\""
+ ]
+skip_welcome_message = true
+table_mode = "rounded"
+
+[env]
+ANDROID_SDK_ROOT = "/home/louix/Android/Sdk"
+EDITOR = "kak"
+
+[line_editor]
+history_duplicates = "ignoreconsecutive"
+history_ignore_space = true
+max_history_size = 1000000

@@ -178,28 +178,45 @@ let default_theme = {
 
 # The default config record. This is where much of your global configuration is setup.
 let-env config = {
-  filesize_metric: false
-  table_mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
-  use_ls_colors: true
-  rm_always_trash: false
+  show_banner: false
+  ls: {
+    use_ls_colors: true
+  }
+  rm: {
+    always_trash: false
+  }
   color_config: $default_theme
   use_grid_icons: true
   footer_mode: "25" # always, never, number_of_rows, auto
-  quick_completions: true  # set this to false to prevent auto-selecting completions when only one remains
-  partial_completions: true  # set this to false to prevent partial filling of the prompt
-  completion_algorithm: "fuzzy"  # prefix, fuzzy
-  animate_prompt: true # redraw the prompt every second
+
+  cd: {
+    abbreviations: false
+  }
+  completions: {
+    case_sensitive: false
+    quick: true
+    partial: true
+    algorithm: "fuzzy"
+  }
+  # animate_prompt: true # redraw the prompt every second
   float_precision: 2
   # buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
   use_ansi_coloring: true
-  filesize_format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
+  filesize: {
+    format: "auto"
+    metric: false
+  }
   edit_mode: emacs # emacs, vi
-  max_history_size: 1000000 # Session has to be reloaded for this to take effect
-  sync_history_on_enter: false # Enable to share the history between multiple sessions, else you have to close the session to persist history to file
+
+  history: {
+    max_size: 1000000
+    sync_on_enter: false
+  }
   shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
-  disable_table_indexes: false # set to true to remove the index column from tables
-  cd_with_abbreviations: false # set to true to allow you to do things like cd s/o/f and nushell expand it to cd some/other/folder
-  case_sensitive_completions: false # set to true to enable case-sensitive completions
+  table: {
+    mode: rounded
+    index_mode: "auto"
+  }
 
   hooks: {
     pre_prompt: [{
@@ -216,7 +233,7 @@ let-env config = {
   }
   menus: [
       # Configuration for default nushell menus
-      # Note the lack of souce parameter
+      # Note the lack of source parameter
       {
         name: completion_menu
         only_buffer_difference: false
@@ -285,8 +302,8 @@ let-env config = {
         }
         source: { |buffer, position|
             $nu.scope.commands
-            | where command =~ $buffer
-            | each { |it| {value: $it.command description: $it.usage} }
+            | where name =~ $buffer
+            | each { |it| {value: $it.name description: $it.usage} }
         }
       }
       {
@@ -328,8 +345,8 @@ let-env config = {
         }
         source: { |buffer, position|
             $nu.scope.commands
-            | where command =~ $buffer
-            | each { |it| {value: $it.command description: $it.usage} }
+            | where name =~ $buffer
+            | each { |it| {value: $it.name description: $it.usage} }
         }
       }
   ]
