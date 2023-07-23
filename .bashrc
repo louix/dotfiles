@@ -78,6 +78,21 @@ alias ew="cd ~/dev/gridshare-edge/ && unset LD_LIBRARY_PATH"
 alias ele="cd ~/dev/lunar-edge/"
 alias el="cd ~/dev/labs/"
 
+# git worktree
+gw() {
+    DIR=$(git worktree list | fzf | cut -d' ' -f 1)
+    if [ -n "$DIR" ]; then
+        cd "$DIR"
+    fi
+}
+gwd() {
+    DIR=$(git worktree list | fzf | cut -d' ' -f 1)
+    if [ -n "$DIR" ]; then
+        git worktree remove "$DIR"
+        ew
+    fi
+}
+alias gwa="git worktree add"
 
 adbc () {
     HOST=$1
@@ -105,12 +120,13 @@ p () {
 }
 
 j() {
-    CURRENT_DIR=$(git rev-parse --show-toplevel)
-    DIR=$(fd . --type directory "$CURRENT_DIR" | fzf)
+    GIT_ROOT=$(git rev-parse --show-toplevel)
+    DIR=$({ echo "$GIT_ROOT"; fd . --type directory "$GIT_ROOT"; } | fzf) # include git root dir
     if [ -n "$DIR" ]; then
         cd "$DIR"
     fi
 }
+
 
 aa() {
     EMULATOR="/home/louix/Android/Sdk/emulator/emulator"
