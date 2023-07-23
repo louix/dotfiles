@@ -7,8 +7,12 @@ idle-timeout = 200
 display-messages = true
 
 [keys.normal]
-x = ["move_char_right", "extend_line"]
+# x = ["move_char_right", "extend_line"]
 x = ["extend_to_line_bounds"]
 X = ["extend_line"]
 W = ["extend_next_word_end"]
 B = ["extend_prev_word_start"]
+
+# Notes
+# :run-shell-command <-- run a shell command without interacting with selections
+# :reflow <-- reflow selected text
