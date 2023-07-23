@@ -74,10 +74,11 @@ alias kak="unset LD_LIBRARY_PATH && tmux new 'kak'"
 alias hx="helix"
 alias pnpx="pnpm exec"
 alias yay="paru"
-alias ew="cd ~/dev/gridshare-edge/ && unset LD_LIBRARY_PATH"
+alias ew="cd ~/dev/gridshare-edge/_main && unset LD_LIBRARY_PATH && unset XDG_DATA_DIRS"
 alias ele="cd ~/dev/lunar-edge/"
 alias el="cd ~/dev/labs/"
-
+alias notify="notify-send --urgency normal --icon terminal --expire-time=120000 \"command complete! 🎉\""
+alias qrc="xclip -selection clipboard -t image/jpeg -o | zbarimg --quiet --raw - | xclip -selection clipboard"
 # git worktree
 gw() {
     DIR=$(git worktree list | fzf | cut -d' ' -f 1)
